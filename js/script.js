@@ -1,30 +1,38 @@
-let producto =  prompt("Ingrese el producto que quiere comprar( // TECLADO // MOUSE // MONITOR // )").toUpperCase();
+let opcion = "";
+let valorTotal = 0;
 
-if (producto == "TECLADO"){
+do{
+    let producto =  prompt("Ingrese el producto que quiere comprar( // TECLADO // MOUSE // MONITOR // )").toUpperCase();
     
-    let precioProdSinIva1 = 35;
-    let precioProdConIva1 = Math.round(precioProdSinIva1 * 1.22);
+    let precioProdSinIva = "";
+    let precioProdConIva = "";
 
-    alert("El producto elegido es: " + producto );
-    alert("El precio que debe abonar por " + producto + " es : " + precioProdConIva1);
+    if (producto == "TECLADO"){       
 
-}else if (producto == "MOUSE"){
-
-    let precioProdSinIva2 = 20;
-    let precioProdConIva2 = Math.round(precioProdSinIva2 * 1.22);
-
-    alert("El producto elegido es: " + producto );
-    alert("El precio que debe abonar por " + producto + " es : " + precioProdConIva2);
-
-}else{
-
-    let precioProdSinIva3 = 100;
-    let precioProdConIva3 = Math.round(precioProdSinIva3 * 1.22);
-
-    alert("El producto elegido es: " + producto );
-    alert("El precio que debe abonar por " + producto + " es : " + precioProdConIva3);
+        precioProdSinIva = 35;    
+        alert("El producto elegido es: " + producto );
     
-}
+    }else if (producto == "MOUSE"){
+    
+        precioProdSinIva = 20; 
+        alert("El producto elegido es: " + producto );
+    
+    }else{
+    
+        precioProdSinIva = 100;
+        alert("El producto elegido es: " + producto );
+       
+    }
 
-alert("Gracias por elegir CORE URUGUAY");
+    precioProdConIva = Math.round(precioProdSinIva * 1.22);
+    
+    valorTotal = valorTotal + precioProdConIva;
+
+    opcion = prompt("Desea agregar otro producto?" ).toUpperCase();
+
+}while(opcion != "NO");
+
+alert("El total de su factura es de: " + valorTotal)
+
+alert("Gracias por elegir CORE uruguay")
 
