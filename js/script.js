@@ -1,38 +1,31 @@
-let opcion = "";
-let valorTotal = 0;
 
-do{
-    let producto =  prompt("Ingrese el producto que quiere comprar( // TECLADO // MOUSE // MONITOR // )").toUpperCase();
+
+let precioProducto;
+
+let producto = prompt("Ingrese el producto que quiere comprar( // TECLADO // MOUSE // MONITOR // )").toUpperCase();
+
+let productoElegido = (producto) => {
     
-    let precioProdSinIva = "";
-    let precioProdConIva = "";
-
-    if (producto == "TECLADO"){       
-
-        precioProdSinIva = 35;    
-        alert("El producto elegido es: " + producto );
+        if(producto == "TECLADO"){
+            console.log("El precio del teclado es 30")
+            precioProducto = 30;        
+            return producto;
+            
+        }else if(producto == "MOUSE"){
+            console.log("El precio del Mouse es 25")
+            precioProducto = 25;
+            return producto;
+        }else{
+            console.log("El precio del Monitor es 100")
+            precioProducto = 100;
+            return producto;
+        }
     
-    }else if (producto == "MOUSE"){
-    
-        precioProdSinIva = 20; 
-        alert("El producto elegido es: " + producto );
-    
-    }else{
-    
-        precioProdSinIva = 100;
-        alert("El producto elegido es: " + producto );
-       
-    }
+}
 
-    precioProdConIva = Math.round(precioProdSinIva * 1.22);
-    
-    valorTotal = valorTotal + precioProdConIva;
+productoElegido(producto);
 
-    opcion = prompt("Desea agregar otro producto?" ).toUpperCase();
-
-}while(opcion != "NO");
-
-alert("El total de su factura es de: " + valorTotal)
+alert("El precio de " + producto + " es " + precioProducto);
 
 alert("Gracias por elegir CORE uruguay")
 
