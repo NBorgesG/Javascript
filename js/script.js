@@ -1,84 +1,43 @@
 
+let productoElegido = "";
 
-let precioProducto;
-let opcion;
-let valorBoleta= 0;
-let precioConIva;
-let producto;
-let cuotas = 0 ;
+class Producto {
+    constructor (producto, precio, stock){
+        this.producto=producto; 
+        this.precio=precio;        
+        this.stock=stock;
+    }
 
-const precioTotal = (precioProducto) => Math.round(precioProducto * 1.21);
+    sumarIva(){
+        return this.precio = Math.round(this.precio * 1.21) ;
+    }
 
+    venderProducto(){
+            return this.stock= this.stock - 1;
+    }
 
-
-const boleta = () => {
-
-    do{
-        let producto = prompt("Ingrese el producto que quiere comprar( // TECLADO // MOUSE // MONITOR // )").toUpperCase();
-
-        if(producto == "TECLADO"){
-            console.log("El precio del teclado es 30")
-            precioProducto = 30;    
-            precioConIva = precioTotal(precioProducto);
-            console.log("El precio con Iva es " + precioConIva);
-            alert("El producto que elegiste es " + producto )
-            
-            
-        }else if(producto == "MOUSE"){
-            console.log("El precio del Mouse es 25")
-            precioProducto = 25;
-            precioConIva = precioTotal(precioProducto);
-            console.log("El precio con Iva es " + precioConIva);
-            alert("El producto que elegiste es " + producto )
-            
-        }else if(producto == "MONITOR"){
-            console.log("El precio del Monitor es 100")
-            precioProducto = 100;
-            precioConIva = precioTotal(precioProducto);
-            console.log("El precio con Iva es " + precioConIva);
-            alert("El producto que elegiste es " + producto )
-            
-        }else{
-            alert("Por favor ingrese un producto de nuestra lista")
-        }
-
-        valorBoleta = valorBoleta + precioConIva;
-    
-        opcion = prompt("Desea agregar otro producto?" ).toUpperCase();
-
-
-    }while(opcion != "NO")
-
-
-
-     
-    
 }
 
-const metodoPago = (valorBoleta) =>{
-    cuotas = prompt("En cuantas cuotas lo queres abonar? (1,2 o 3) ");
+let teclado = new Producto ("Teclado", 45 , 10); 
+let mouse = new Producto ("Mouse", 20 , 18); 
+let monitor = new Producto ("Monitor", 120 , 8); 
 
-        if(cuotas == 1){
-            alert("El total de tu compra es: $" + valorBoleta);
-        }else if (cuotas == 2){
-            alert("El total de tu compra es: $" + valorBoleta + " y te queda en 2 cuotas de: $" + valorBoleta/2);
-        }else{
-            alert("El total de tu compra es: $" + valorBoleta + " y te queda en 3 cuotas de: $" + valorBoleta/3)
-        }
 
-    
+productoElegido = prompt("Que producto desea comprar? 1) Teclado 2) Mouse 3) Monitor").toUpperCase();
+
+const venta = (productoElegido) => {
+    if(productoElegido == "TECLADO"){
+        console.log("El teclado cuesta: " + teclado.sumarIva());
+        console.log(teclado.venderProducto())
+
+    }else if(productoElegido == "MOUSE"){
+        console.log("El mouse cuesta: " + mouse.sumarIva());
+        console.log(mouse.venderProducto())
+
+    }else{
+    console.log("El Monitor cuesta: " + monitor.sumarIva());
+    console.log(monitor.venderProducto())
+}
 }
 
-
-
-boleta(producto);
-
-precioTotal(precioProducto);
-
-metodoPago(valorBoleta);
-
-
-
-
-alert("Gracias por elegir CORE uruguay")
-
+venta(productoElegido);
