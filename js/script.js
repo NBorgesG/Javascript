@@ -28,15 +28,15 @@ productoElegido = prompt("Que producto desea comprar? 1) Teclado 2) Mouse 3) Mon
 const venta = (productoElegido) => {
     if(productoElegido == "TECLADO"){
         console.log("El teclado cuesta: " + teclado.sumarIva());
-        console.log(teclado.venderProducto())
+        console.log("Aun quedan en stock " + teclado.venderProducto()+ " teclados")
 
     }else if(productoElegido == "MOUSE"){
         console.log("El mouse cuesta: " + mouse.sumarIva());
-        console.log(mouse.venderProducto())
+        console.log("Aun quedan en stock " + mouse.venderProducto()+ " mouses")
 
     }else{
     console.log("El Monitor cuesta: " + monitor.sumarIva());
-    console.log(monitor.venderProducto())
+    console.log("Aun quedan en stock " + monitor.venderProducto()+ " monitores")
 }
 }
 
