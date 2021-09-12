@@ -1,11 +1,12 @@
 class Producto {
 
-    constructor (nombre,precio,stock){
+    constructor (nombre, precio,stock){
         
         this.nombre=nombre; 
         this.precio=precio;        
         this.stock=stock;
-        this.ordenarPorPrecio = ordenarPorPrecio;
+        
+        
     }
 
     sumarIva(){
@@ -19,42 +20,40 @@ class Producto {
 }
 
 
-const productos = [{nombre: "TECLADO", 
-                    precio: 30, 
-                    stock :33},
-                    {nombre: "MOUSE", 
-                    precio: 18, 
-                    stock :52},
-                    {nombre: "MONITOR", 
-                    precio: 110, 
-                    stock :10},
-                    {nombre: "AURICULARES", 
-                    precio: 15, 
-                    stock :97}];
+const productos = [];
 
+productos.push(new Producto("TECLADO", 30, 33));
+productos.push(new Producto("MOUSE", 18, 52));
+productos.push(new Producto("MONITOR", 110, 10));
+productos.push(new Producto("AURICULARES", 15, 97));
 
+console.log(productos)
 
 const carrito = [];
 
 alert("Bienvenido a CoreUruguay")
 
 
-let productoPedido =prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
+let productoPedido = prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
 
-const venta = (productoPedido) => {
 
-    
+const venta = () => {
+
+    while(productoPedido !== "NO"){
 
         let producto = productos.find(productos => productos.nombre == productoPedido )
     
         if(producto){
             carrito.push(producto);
+            
         }else{
             console.log("El producto ingresado no se encuentra en stock");
-   }
-   
+        }
+       productoPedido = prompt("Quiere comprar algun otro producto?  Teclado  Mouse  Monitor  Auriculares").toUpperCase();
+    }
+    
+    
   
-   
 }
 
 venta(productoPedido);
@@ -62,22 +61,33 @@ venta(productoPedido);
 console.log(carrito);
 
 
+let precioSinIva = 0;
+let precioTotal= 0;
 
-const ordenarPorPrecio = (precio) => {
-    productos.sort((a, b) => {
-        if(a[precio] > b[precio]){
-            return 1;
-        }  
-        else if(a[precio] < b[precio]){
-            return -1
-        }
-        return 0
-    })
+const boleta = () => {
+
+    for (let i = 0; i < carrito.length; i++) {
+    
+        let precio= carrito[i].precio;
+    
+        precioSinIva = precioSinIva + precio;
+    
+    }
+    precioTotal = Math.round(precioSinIva*1.21); 
+
+    alert("El precio total de su compra es: "+ precioTotal);
+    
+    
 }
 
-ordenarPorPrecio("precio")
 
-console.log(productos)
+
+boleta();
+
+
+
+
+
 
 
 
