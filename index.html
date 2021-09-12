@@ -1,30 +1,445 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/script.js"></script>
-    <title>Primer Desafio JavaScript</title>
-</head>
-<header>
-    <div> <h1>CORE URUGUAY</h1></div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="sass/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     
-    <div><h2>Venta de insumos de informatica!</h2></div>
-</header>
-<body>
-    <br><br><br><br>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
 
-<div><h1>Seccion de productos</h1></div>
-
-<br><br><br>
-
-<div><h2>Carrito de Compras</h2></div>
-<div><h4>Aca iria la lista de objetos comprados</h4></div>
     
-</body>
+    <meta name="description" content="Palabras identificatorias para mi sitio">
+    <meta name="keywords" content="TARJETAS GRAFICAS, PC, OFERTAS, MONITORES, PLACA MADRE, PERIFERICOS, VENTA, INFORMATICA, ACCESORIOS, MEMORIA RAM, NOTICIAS">
+    <meta name="description" content="Sitio Web de venta de accesorios de informatica, CORE URUGUAY">
+  
+    <title>Core Uruguay</title>
+    
+  </head>
 
-<footer>
- <div><h3>Gracias por elegir Core Uruguay</h3></div>
-</footer>
+    <body>
+    
+      <header>
+       
+        <div class="container-fluid bg-dark border border-dark">
+          
+        <hr>
+          <div class="container">
+            <div class="nav row  ">
+
+              <div class="col-lg-9 titulo "><a class="nav  nav-link  text-white "  href="index.html"> <img src="img/CORE_Logo-1.png" alt="" width="150" height="173" >  </a>
+                <h1 class="mx-auto my-0 text-uppercase mt-5 ">Core Uruguay</h1>
+              </div>
+  
+              <div class="col-lg-3 pt-3">
+                <ul class="nav flex-column d-flex justify-content-end">
+                  <li class="nav-item">
+                   <a class="nav-link " href="novedades.html">NOVEDADES</a>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link  " href="productos.html">PRODUCTOS</a>
+                 </li>
+                
+                 <li class="nav-item">
+                   <a class="nav-link  " href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link  " href="contacto.html">CONTACTO</a>
+                 </li>
+     
+     
+                 </ul>
+              </div>
+  
+  
+            </div>
+
+          </div>
+
+         
+          <hr>
+        </div>
+     
+      </header>
+      
+      <main>
+        
+        
+       
+        
+        <div  class="modal fade " id="ModalCarrito">
+          <div class="modal-dialog modal-lg modal-dialog-centered ">
+            <div class="modal-content ">
+        
+              
+              <div class="modal-header ">
+                <h2 class="modal-title">CARRITO</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+              </div>
+              
+              
+              <div class="modal-body">
+                <div><img  src="img/carretilla.png " alt="" width="40" height="40"></div>
+                <br>
+                <h3>No tienes ningun producto en el carrito.</h3>
+              </div>
+        
+              <div></div>
+              <div class="modal-footer">
+                <a href="productos.html" class="btn btn-info" role="button" data-bs-toggle="button">Ir a Productos</a>
+                
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+        <div  class="modal fade " id="ModalFavorito">
+          <div class="modal-dialog modal-lg modal-dialog-centered ">
+            <div class="modal-content ">
+        
+              
+              <div class="modal-header ">
+                <h2 class="modal-title">FAVORITOS</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+              </div>
+              
+              
+              <div class="modal-body">
+                <div><img  src="img/corazon.png" alt="" width="40" height="40"></div>
+                <br>
+                <h3>No has agregado nada a tus favoritos</h3>
+              </div>
+        
+              <div></div>
+              <div class="modal-footer">
+                <a href="productos.html" class="btn btn-info" role="button" data-bs-toggle="button">Ir a Productos</a>
+                
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        <div  class="modal fade" id="ModalUsuario">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+        
+              
+              <div class="modal-header">
+                <h2 class="modal-title">Inicia Sesion o Registrarse</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              
+              <div class="modal-body">
+                <form  action="# "  >
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Contraseña:</label>
+                  <input type="password" class="form-control" id="contraseña" placeholder="Ingrese Contraseña" name="contraseña">
+              </div>
+              
+              <div class="d-flex justify-content-around pt-3">
+                <button type="submit" class="btn btn-success">Ingresar</button>
+                  <button type="submit" class="btn btn-secondary">Registrarse</button>
+                    <button type="reset" class="btn btn-secondary">Borrar</button>
+              </div>
+                  
+                     
+                  
+              </form>
+                
+              </div>
+        
+              
+              
+        
+            </div>
+          </div>
+        </div>
+
+        <div class="prodYBusc  mt-3">
+          
+            <div class="container-fluid color1  border-top border-secondary border-bottom border-secondary border-right border-light cont2">
+              <div class="row container-fluid color1 ">
+                
+                <div class="col-lg-2 ">
+                  <div id="mySidenav" class="sidenav">
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                  <a href="productos.html">MotherBoards</a>
+                  <hr>
+                  <a href="productos.html">Tarjetas Graficas</a>
+                  <hr>
+                  <a href="productos.html">Monitores</a>
+                  <hr>
+                  <a href="productos.html">Memorias Ram</a>
+                  <hr>
+                  <a href="productos.html">Almacenamiento</a>
+                  <hr>
+                  <a href="productos.html">Perifericos</a>
+                  <hr>
+                  <a href="productos.html">Sillas de escritorio</a>
+                </div>
+                
+                <div><span style="font-size:25px;cursor:pointer " onclick="openNav()">&#9776; PRODUCTOS</span></div></div>
+                
+                
+                
+                
+                <script>
+                function openNav() {
+                  document.getElementById("mySidenav").style.width = "300px";
+                }
+                
+                function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                }
+                </script>
+              <div class=" col-lg-6 busc ">
+                
+                <div class="input-group buscador ">
+                  <input type="search" class="form-control " placeholder="Buscar producto" aria-label="Search"
+                    aria-describedby="search-addon" />
+                  <button type="button" class="btn btn-secondary">Buscar</button>
+                </div>
+    
+              </div>
+
+              <div class="col-lg-2 favorito   ">
+                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalFavorito" ><h4>FAVORITOS  &#9825</h4> </a>
+
+              </div>
+
+              <div class="col-lg-2 carrito  ">
+                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalCarrito" ><h4>CARRITO  &#128722</h4> </a>
+
+              </div>
+              
+              
+              </div>
+            </div>
+              
+            </div>
+  
+            
+        
+        
+        <div class="container-fluid pt-3 pb-2 carousell mt-3 ">
+          <div class="container mt-1 ">
+            <div id="demo" class="carousel slide carousel-fade d-flex justify-content-center pt-3 pb-3" data-ride="carousel">
+  
+            
+              <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+              </ul>
+            
+              
+              <div class="carousel-inner">
+                
+                <div class="carousel-item active">
+                  <img src="img/pexels-cottonbro-4705635.jpg" alt="" >
+                  <div class="carousel-caption bg-dark">
+                    <h3>No te lo pierdas!</h3>
+                    <p>Tecnicos especializados podran armarte una pc a tu gusto!</p>
+                  </div>
+                </div>
+                <div class="carousel-item ">
+                  <img src="img/technician-repairing-computer-computer-hardware-repairing-upgrade-technology.jpg" alt="" >
+                  <div class="carousel-caption bg-dark">
+                    <h3>Calidad garantizada!</h3>
+                    <p>Con los mejores componentes de plaza!</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="img/Montar-nuevo-PC.jpg" alt="" >
+                  <div class="carousel-caption bg-dark">
+                    <h3>CORE URUGUAY</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            
+              
+              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            
+            </div>
+                
+  
+          </div>
+
+        </div>
+
+        <div class="container mt-5 mb-5 color2 pt-3 pb-3 marcas">
+          <div class="container-fluid titulo">
+            <hr>
+            <h4 >ALGUNAS DE NUESTRAS MARCAS <img src="img/etiqueta.png" alt=""></h4>
+            <hr></div>
+
+            
+          <div class=" row container imgMarcas pt-5 pb-5">
+       
+            <div class="col-sm-3 d-flex justify-content-around " ><img class="mt-3" src="img/hyper.png" alt="" title="Hyper X"></div>
+            <div class="col-sm-3 d-flex justify-content-around "><img class="mt-3" src="img/logitech.png" alt="" title="Logitech"></div>
+            <div class="col-sm-3 d-flex justify-content-around " ><img class="mt-3" src="img/redragon-logo.jpeg" alt="" title="Redragon"></div>
+            <div class="col-sm-3 d-flex justify-content-around "><img class="mt-3" src="img/razerr.jpg" alt="" title="Razer"></div>
+            
+          </div>
+        </div>
+
+        <div class="container color2 mb-5 mt-4 pt-4 pb-3 border border-secondary ingresos">
+          
+          <div class="color2 nuevosIng">
+            <hr>
+            <h4 class="nuevosIng ">NUEVOS INGRESOS <img src="img/etiqueta-de-nuevos-productos.png" alt=""></h4>
+            <hr>
+          </div>
+          
+          
+
+          <div class="row pt-5">
+            <div class="col-lg-4  prod1 ">
+              <div class="divProd ">
+                <h5>Tarjeta VGA EVGA GT710</h5>
+                <h6>2gb DDR3</h6>
+                <br><br>
+                <img src="img/tarjetas/tarjeta gt71002G-P3-2713-KR_LG_1.png" alt="">
+            </div> 
+            </div>
+
+            <div class="col-lg-4  prod2">
+              <div class="divProd ">
+              <h5>Monitor Redragon H270S</h5>
+              <h6>Jade</h6>
+              <img src="img/Duo-Monitores-Redragon-h270.png" alt="">
+          </div>
+         </div>
+
+            <div class="col-lg-4  prod3">
+              <div class="divProd ">
+                <h5>Teclado Redragon Mecanico</h5>
+                <h6>Shrapnel K589RGB</h6>
+                <img src="img/perifericos/0014484_teclado-gamer-redragon-mecanico-shrapnel-k589rgb-pcm_625.png" alt="">
+            </div>
+            </div>
+          </div>
+
+ 
+
+        </div>
+
+       
+
+      </main>
+  
+      <footer >
+        <div class="footer  mt-3 pt-5">
+  
+          <div class="container-fluid">
+
+            <div class="row ">
+
+              <div class="container logo text-white col-lg-9 pt-3 ">
+                <h4 class="pb-3">CORE URUGUAY</h4>
+                
+                
+                
+                <a href="index.html"><img src="img/CORE_Logo-1.png" alt="" width="150" height="173"></a>
+                
+                
+                
+             </div>
+            
+              <div class="container col-lg-3 miCuenta d-flex justify-content-end ">
+  
+                <div class="list-group list-group-flush  pt-3 pb-3 ">
+                  <li class="list-group-item "><h5>Mi Cuenta</h5></li>
+                  <a href="#" class="list-group-item list-group-item-action " data-toggle="modal" data-target="#ModalUsuario">Ingresar / Registrarse</a>
+                  <a href="#" class="list-group-item list-group-item-action " data-toggle="modal" data-target="#ModalCarrito">Carrito</a>
+                  <li class="list-group-item "><h5>Empresa</h5></li>
+                  <a href="sobre_nosotros.html" class="list-group-item list-group-item-action">Politica de Garantia y Envios</a>
+                </div>
+  
+            
+            </div>
+
+
+            </div>
+
+
+            <div class="row tarjetas container-fluid pb-2">
+              <div class="col-lg-4 tarjetas2 ">
+              <img src="img/logotipo-de-visa.png"  alt="">
+              <img src="img/midinero.png" alt="">
+              <img src="img/prex.png" alt="">
+              <img src="img/paypal.png" alt="">
+              <img src="img/oca.png" alt="">
+            </div>
+            
+              
+            </div>
+
+            </div>
+          
+          <hr>
+
+          
+          
+            <div class="row container-fluid pt-3 ">
+
+              <div class="col-lg-6 font-weight-bolder"><p >Derechos reservados 2021 ©</p></div>
+              <div class="col-lg-6 d-flex justify-content-end font-weight-bolder"><p >CoreUruguay.com.uy</p></div>
+              
+              
+              
+            
+            
+            </div>
+            <hr>
+            
+            
+          
+
+          <div class="row redes container-fluid  color1 justify-content-end pb-3">
+            
+            <div class="container-fluid col-lg-6 txtRedes "><span>Seguinos en nuestras redes sociales</span> </div>
+
+            <div class="col-lg-6 d-flex justify-content-end">
+            <div class="imgRedes"><a class="imgRedes2" href="https://www.facebook.com/Coreuystore/about/?ref=page_internal"><img src="img/013-facebook.png" alt="" /></a></div>
+            <div class="imgRedes"><a class="imgRedes2"href="https://www.instagram.com/corepcstore/?hl=es-la"><img class="imgLogo" src="img/014-instagram.png" alt="" /></a></div>
+            <div class="imgRedes"><img class="imgRedes3" src="img/027-whatsapp.png" alt="" /></div>
+            
+            </div>
+            
+            
+          </div>
+          
+  
+        </div>
+      
+        
+        
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+  </body>
 </html>

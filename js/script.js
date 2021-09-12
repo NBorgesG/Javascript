@@ -1,9 +1,8 @@
-
-let productoElegido = "";
-
 class Producto {
-    constructor (producto, precio, stock){
-        this.producto=producto; 
+
+    constructor (nombre,precio,stock){
+        
+        this.nombre=nombre; 
         this.precio=precio;        
         this.stock=stock;
     }
@@ -18,26 +17,50 @@ class Producto {
 
 }
 
-let teclado = new Producto ("Teclado", 45 , 10); 
-let mouse = new Producto ("Mouse", 20 , 18); 
-let monitor = new Producto ("Monitor", 120 , 8); 
+
+const productos = [{nombre: "TECLADO", 
+                    precio: 30, 
+                    stock :33},
+                    {nombre: "MOUSE", 
+                    precio: 18, 
+                    stock :52},
+                    {nombre: "MONITOR", 
+                    precio: 110, 
+                    stock :10},
+                    {nombre: "AURICULARES", 
+                    precio: 15, 
+                    stock :97}];
+
+console.log(productos);
+
+const carrito = [];
+
+alert("Bienvenido a CoreUruguay")
 
 
-productoElegido = prompt("Que producto desea comprar? 1) Teclado 2) Mouse 3) Monitor").toUpperCase();
+let productoPedido =prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
 
-const venta = (productoElegido) => {
-    if(productoElegido == "TECLADO"){
-        console.log("El teclado cuesta: " + teclado.sumarIva());
-        console.log("Aun quedan en stock " + teclado.venderProducto()+ " teclados")
+const venta = (productoPedido) => {
 
-    }else if(productoElegido == "MOUSE"){
-        console.log("El mouse cuesta: " + mouse.sumarIva());
-        console.log("Aun quedan en stock " + mouse.venderProducto()+ " mouses")
+    
 
-    }else{
-    console.log("El Monitor cuesta: " + monitor.sumarIva());
-    console.log("Aun quedan en stock " + monitor.venderProducto()+ " monitores")
+        let producto = productos.find(productos => productos.nombre == productoPedido )
+    
+        if(producto){
+            carrito.push(producto);
+        }else{
+            console.log("El producto ingresado no se encuentra en stock");
+   }
+   
+    
+    
+
+   
+   
 }
-}
 
-venta(productoElegido);
+console.log(carrito);
+
+venta(productoPedido);
+
+
