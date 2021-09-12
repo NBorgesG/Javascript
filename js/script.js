@@ -5,6 +5,7 @@ class Producto {
         this.nombre=nombre; 
         this.precio=precio;        
         this.stock=stock;
+        this.ordenarPorPrecio = ordenarPorPrecio;
     }
 
     sumarIva(){
@@ -31,7 +32,7 @@ const productos = [{nombre: "TECLADO",
                     precio: 15, 
                     stock :97}];
 
-console.log(productos);
+
 
 const carrito = [];
 
@@ -52,15 +53,32 @@ const venta = (productoPedido) => {
             console.log("El producto ingresado no se encuentra en stock");
    }
    
-    
-    
-
-   
+  
    
 }
 
+venta(productoPedido);
+
 console.log(carrito);
 
-venta(productoPedido);
+
+
+const ordenarPorPrecio = (precio) => {
+    productos.sort((a, b) => {
+        if(a[precio] > b[precio]){
+            return 1;
+        }  
+        else if(a[precio] < b[precio]){
+            return -1
+        }
+        return 0
+    })
+}
+
+ordenarPorPrecio("precio")
+
+console.log(productos)
+
+
 
 
