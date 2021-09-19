@@ -164,6 +164,23 @@ header{
 
 
 main{
+  #boleta{
+    padding-left: 40%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: auto;
+    -webkit-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    h3{
+      color: #111;
+      font-weight: bolder;
+    }
+    
+    
+  }
   .container{
     h4{
       font-weight: bolder;

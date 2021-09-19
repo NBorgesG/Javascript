@@ -13,13 +13,11 @@ class Producto {
         return this.precio = Math.round(this.precio * 1.21) ;
     }
 
-    venderProducto(){
-            return this.stock= this.stock - 1;
+    venderProducto(cantidadPedida){
+            return this.stock= this.stock - cantidadPedida;
     }
 
 }
-
-
 
 const productos = [];
 
@@ -34,70 +32,82 @@ const carrito = [];
 
 alert("Bienvenido a CoreUruguay")
 
-
 let productoPedido = prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
 
-let cantidad;
+let cantidadPedida;
+let precioConIva;
 
 const venta = () => {
-
+  
     while(productoPedido !== "NO"){
 
         let producto = productos.find(productos => productos.nombre == productoPedido )
         
         if(producto){
-
             cantidadPedida = parseInt((prompt("Cuantas unidades desea adquirir?")));
-            venderProducto(producto);
-            carrito.push(producto);    
-            console.log(producto.stock);   
+                
+                    carrito.push(producto); 
+                    producto.venderProducto(cantidadPedida);
+                    //console.log(producto.stock);
+                     
+                    precioConIva = producto.sumarIva();
+                    //producto.precio = precioConIva * cantidadPedida;
+                    
+                    //console.log(producto.precio)
 
         }else{
             console.log("El producto ingresado no se encuentra en stock");
         }
-       productoPedido = prompt("Quiere comprar algun otro producto?  Teclado  Mouse  Monitor  Auriculares").toUpperCase();
-
-       
-  
-    }
-    
-    
-    
+        productoPedido = prompt("Quiere comprar algun otro producto?  Teclado  Mouse  Monitor  Auriculares").toUpperCase();
+    } 
 }
-
-
 
 venta(productoPedido);
 
 console.log(carrito);
 
-
-let precioSinIva = 0;
 let precioTotal= 0;
+
+
 
 const boleta = () => {
 
-    for (let i = 0; i < carrito.length; i++) {
+
     
-        let precio= carrito[i].precio;
-        sumarIva(precio)
-        precioTotal -= + precio;
+    let contenedor = document.createElement("div");
+    document.getElementById("boleta").appendChild(contenedor);
+    let contenedor2 = document.createElement("div");
+    document.getElementById("boleta").appendChild(contenedor2);
     
+
+    for (const producto of carrito) {
+
+        contenedor = document.createElement("div");
+        precio = producto.precio;
+        precioXCantidad = precio * cantidadPedida;
+        precioTotal += precioXCantidad;
+
+        contenedor.innerHTML= `
+                           <h3> Producto: ${producto.nombre}</h3>
+                           <h3> Valor Unitario $ ${producto.precio}</h3>
+                           <h3> Cantidad: ${cantidadPedida}</h3>
+                           <h3> Precio total $ ${precioXCantidad}</h3>
+                           <h3> ________________________________</h3>`; 
+
+        document.getElementById("boleta").appendChild(contenedor);
+        
     }
-
-     
-
-    alert("El precio total de su compra es: "+ precioTotal);
-    
+    contenedor2 = document.createElement("div");
+    contenedor2.innerHTML = `<h3>Total Boleta: $ ${precioTotal}</h3>`;
+    document.getElementById("boleta").appendChild(contenedor2);
     
 }
 
 
 
+
+
 boleta();
-
-
-
 
 
 
