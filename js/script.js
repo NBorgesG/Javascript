@@ -20,6 +20,7 @@ class Producto {
 }
 
 
+
 const productos = [];
 
 productos.push(new Producto("TECLADO", 30, 33));
@@ -36,25 +37,35 @@ alert("Bienvenido a CoreUruguay")
 
 let productoPedido = prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
 
+let cantidad;
 
 const venta = () => {
 
     while(productoPedido !== "NO"){
 
         let producto = productos.find(productos => productos.nombre == productoPedido )
-    
+        
         if(producto){
-            carrito.push(producto);
-            
+
+            cantidadPedida = parseInt((prompt("Cuantas unidades desea adquirir?")));
+            venderProducto(producto);
+            carrito.push(producto);    
+            console.log(producto.stock);   
+
         }else{
             console.log("El producto ingresado no se encuentra en stock");
         }
        productoPedido = prompt("Quiere comprar algun otro producto?  Teclado  Mouse  Monitor  Auriculares").toUpperCase();
+
+       
+  
     }
     
     
-  
+    
 }
+
+
 
 venta(productoPedido);
 
@@ -69,11 +80,12 @@ const boleta = () => {
     for (let i = 0; i < carrito.length; i++) {
     
         let precio= carrito[i].precio;
-    
-        precioSinIva = precioSinIva + precio;
+        sumarIva(precio)
+        precioTotal -= + precio;
     
     }
-    precioTotal = Math.round(precioSinIva*1.21); 
+
+     
 
     alert("El precio total de su compra es: "+ precioTotal);
     
