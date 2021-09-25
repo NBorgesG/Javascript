@@ -136,22 +136,6 @@ header .container-fluid .container ul li a:hover {
   }
 }
 
-main #boleta {
-  padding-left: 40%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  height: auto;
-  -webkit-box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-main #boleta h3 {
-  color: #111;
-  font-weight: bolder;
-}
-
 main .container h4 {
   font-weight: bolder;
   font-size: large;
@@ -443,8 +427,10 @@ main .row .prod3 .divProd h6 {
 }
 
 main .row .prod3 .divProd img {
-  height: 80%;
-  width: 80%;
+  height: 70%;
+  width: 70%;
+  -webkit-box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
 }
 
 main .row .prod3 .divProd img:hover {
@@ -452,6 +438,29 @@ main .row .prod3 .divProd img:hover {
   transform: scale(1.3);
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
+}
+
+main #productos {
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 15%;
+  -webkit-box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 31px 5px rgba(0, 0, 0, 0.75);
+}
+
+main #productos h5, main #productos h6 {
+  color: #111;
+  font-weight: bolder;
+}
+
+main #productos img {
+  padding-top: 10px;
+  height: 150px;
+  width: 170px;
+}
+
+main #productos .container {
+  margin-left: 15px;
 }
 
 main .marcas {

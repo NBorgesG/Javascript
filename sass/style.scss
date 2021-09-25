@@ -164,23 +164,10 @@ header{
 
 
 main{
-  #boleta{
-    padding-left: 40%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    height: auto;
-    -webkit-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
-    padding-top: 25px;
-    padding-bottom: 25px;
-    h3{
-      color: #111;
-      font-weight: bolder;
-    }
+  
     
     
-  }
+  
   .container{
     h4{
       font-weight: bolder;
@@ -503,9 +490,12 @@ main{
           @include styleProd(center, bolder , 0.4em 0.4em 0.4em rgb(139, 139, 139));
         }
           img{
-          
-          height: 80%;
-          width: 80%;
+            
+          height: 70%;
+          width: 70%;
+          -webkit-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+          -moz-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+          box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
         }
         img:hover{
           -webkit-transform:scale(1.3);transform:scale(1.3);
@@ -515,11 +505,36 @@ main{
           
         
     }
+    
+    
   }
   
 
 } 
 main{
+  #productos{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 15%;
+    -webkit-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);
+    
+    h5,h6{
+      color: #111;
+    font-weight: bolder;
+
+    }
+    img{
+      padding-top: 10px;
+      height: 150px;
+      width: 170px;
+    }
+    .container{
+      margin-left: 15px;
+    }
+    
+  }
   .marcas{
     border-radius: 5px;
     -webkit-box-shadow: 10px 10px 31px 5px rgba(0,0,0,0.75);

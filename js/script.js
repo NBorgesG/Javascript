@@ -1,11 +1,11 @@
 class Producto {
 
-    constructor (nombre, precio,stock){
+    constructor (nombre, precio,stock,img){
         
         this.nombre=nombre; 
         this.precio=precio;        
         this.stock=stock;
-        
+        this.img=img;
         
     }
 
@@ -21,18 +21,16 @@ class Producto {
 
 const productos = [];
 
-productos.push(new Producto("TECLADO", 30, 33));
-productos.push(new Producto("MOUSE", 18, 52));
-productos.push(new Producto("MONITOR", 110, 10));
-productos.push(new Producto("AURICULARES", 15, 97));
+productos.push(new Producto("Teclado Logitech Z21", 30, 33,"teclado.jpg"));
+productos.push(new Producto("Mouse Kolke ", 18, 52,"mouse.jpg"));
+productos.push(new Producto("Monitor Gamer", 110, 10,"monitor.jpg"));
+productos.push(new Producto("Auriculares Kolke 27C", 15, 97,"auriculares.jpg"));
+
 
 console.log(productos)
 
 const carrito = [];
 
-alert("Bienvenido a CoreUruguay")
-
-let productoPedido = prompt("Que producto desea adquirir?  Teclado  Mouse  Monitor Auriculares").toUpperCase();
 
 let cantidadPedida;
 let precioConIva;
@@ -47,13 +45,9 @@ const venta = () => {
             cantidadPedida = parseInt((prompt("Cuantas unidades desea adquirir?")));
                 
                     carrito.push(producto); 
-                    producto.venderProducto(cantidadPedida);
-                    //console.log(producto.stock);
-                     
+                    producto.venderProducto(cantidadPedida);      
                     precioConIva = producto.sumarIva();
-                    //producto.precio = precioConIva * cantidadPedida;
-                    
-                    //console.log(producto.precio)
+                   
 
         }else{
             console.log("El producto ingresado no se encuentra en stock");
@@ -62,7 +56,7 @@ const venta = () => {
     } 
 }
 
-venta(productoPedido);
+
 
 console.log(carrito);
 
@@ -71,15 +65,12 @@ let precioTotal= 0;
 
 
 const boleta = () => {
-
-
     
     let contenedor = document.createElement("div");
     document.getElementById("boleta").appendChild(contenedor);
     let contenedor2 = document.createElement("div");
     document.getElementById("boleta").appendChild(contenedor2);
     
-
     for (const producto of carrito) {
 
         contenedor = document.createElement("div");
@@ -104,13 +95,39 @@ const boleta = () => {
 }
 
 
+const mostrarTienda = () => {
+   
+    for (const producto of productos) {
+        
+        const tienda = document.getElementById("productos")
+        let cardProducto = document.createElement("div")
+        
+        
+        cardProducto.innerHTML = ` 
+                                    <div class= "container">
+                                    <div class="card mb-3 ">
+                                    <div class="card-body  prod3 ">
+                                        
+                                            <h5 class="card-title">${producto.nombre}</h5>
+                                            <h6 class="card-text"> Precio U$S ${producto.precio}</h6>
+                                            <img class="card-img-top" src="img/${producto.img}" alt=${producto.nombre}>
+                                            
+                                        </div>
+                                        <button class="btn btn-primary mb-3">Agregar al Carrito</button>
+                                    <button class="btn btn-primary">Agregar a favoritos</button>
+                                    </div>
+                                    </div>`;
+
+        tienda.appendChild(cardProducto);                                        
+    }
+
+
+}
+    
 
 
 
-boleta();
 
-
-
-
+mostrarTienda();
 
 
