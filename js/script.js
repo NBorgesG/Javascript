@@ -19,6 +19,16 @@ class Producto {
 
 }
 
+class Usuario {
+    constructor (nombre, contraseña){
+        this.nombre=nombre;
+        this.contraseña=contraseña;
+
+    }
+}
+
+
+
 const productos = [];
 
 productos.push(new Producto("Teclado Logitech Z21", 30, 33,"teclado.jpg"));
@@ -35,7 +45,8 @@ const carrito = [];
 let cantidadPedida;
 let precioConIva;
 
-const venta = () => {
+
+/*const venta = () => {
   
     while(productoPedido !== "NO"){
 
@@ -64,7 +75,7 @@ let precioTotal= 0;
 
 
 
-const boleta = () => {
+/*const boleta = () => {
     
     let contenedor = document.createElement("div");
     document.getElementById("boleta").appendChild(contenedor);
@@ -93,7 +104,7 @@ const boleta = () => {
     document.getElementById("boleta").appendChild(contenedor2);
     
 }
-
+*/
 
 const mostrarTienda = () => {
    
@@ -124,6 +135,28 @@ const mostrarTienda = () => {
 
 }
     
+
+
+const btn = document.getElementById("btnIngresar");
+
+
+
+const bienvUsuario = () =>{
+    
+    const imputNombre = document.getElementById("nombre");
+    const bienvenida = document.getElementById("contBienvenida");
+
+    bienvenida.innerHTML = `<h5> Bienvenido/a ${imputNombre.value}</h5>
+                            <h5> HOLAAA </h5> `
+
+
+    console.log(inputNombre);
+    console.log(bienvenida);
+    alert("funciona")
+
+    }
+
+btn.onclick = () =>{bienvUsuario()};
 
 
 

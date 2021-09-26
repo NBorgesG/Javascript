@@ -62,7 +62,11 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(217,236,247,1) 100%);
 }
 
 
-
+#bienvenida{
+ h5{
+   color: black;
+ }
+}
 
 
 
@@ -97,7 +101,9 @@ header{
         ul{
           
           li{
-            
+            h5{
+              color: #f1f1f1;
+            }
             a{  
               color: whitesmoke;
               .carrito{
@@ -555,6 +561,8 @@ main{
   }
 }  
     
+
+
  main{
    .ingresos{
      border-radius: 5px;
