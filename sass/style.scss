@@ -61,12 +61,15 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(217,236,247,1) 100%);
   @include style(rgb(149, 163, 146),bolder,black)
 }
 
+main{
+  #bienvenida{
+    a{
+      color: blue;
+    }
+   }
 
-#bienvenida{
- h5{
-   color: black;
- }
 }
+
 
 
 

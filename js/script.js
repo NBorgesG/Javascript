@@ -53,7 +53,7 @@ let precioConIva;
         let producto = productos.find(productos => productos.nombre == productoPedido )
         
         if(producto){
-            cantidadPedida = parseInt((prompt("Cuantas unidades desea adquirir?")));
+            
                 
                     carrito.push(producto); 
                     producto.venderProducto(cantidadPedida);      
@@ -63,7 +63,7 @@ let precioConIva;
         }else{
             console.log("El producto ingresado no se encuentra en stock");
         }
-        productoPedido = prompt("Quiere comprar algun otro producto?  Teclado  Mouse  Monitor  Auriculares").toUpperCase();
+        
     } 
 }
 
@@ -146,17 +146,19 @@ const bienvUsuario = () =>{
     const imputNombre = document.getElementById("nombre");
     const bienvenida = document.getElementById("contBienvenida");
 
-    bienvenida.innerHTML = `<h5> Bienvenido/a ${imputNombre.value}</h5>
-                            <h5> HOLAAA </h5> `
-
-
-    console.log(inputNombre);
-    console.log(bienvenida);
-    alert("funciona")
+    bienvenida.innerHTML = `<h5 class= ""> Bienvenido/a ${imputNombre.value}</h5>
+                            `
+    
+    $('#ModalUsuario').modal('hide')
 
     }
 
 btn.onclick = () =>{bienvUsuario()};
+
+
+
+
+
 
 
 

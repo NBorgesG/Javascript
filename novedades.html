@@ -24,40 +24,50 @@
        
         <div class="container-fluid bg-dark border border-dark">
           
-        <hr>
-          <div class="container">
-            <div class="nav row  ">
-
-              <div class="col-lg-9 titulo "><a class="nav  nav-link  text-white "  href="index.html"> <img src="img/CORE_Logo-1.png" alt="" width="150" height="173" >  </a>
-                <h1 class="mx-auto my-0 text-uppercase mt-5 ">Core Uruguay</h1>
-              </div>
-  
-              <div class="col-lg-3 pt-3">
-                <ul class="nav flex-column d-flex justify-content-end">
-                  <li class="nav-item">
-                   <a class="nav-link " href="novedades.html">NOVEDADES</a>
-                 </li>
-                 
-                
-                 <li class="nav-item">
-                   <a class="nav-link  " href="sobre_nosotros.html">SOBRE NOSOTROS</a>
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link  " href="contacto.html">CONTACTO</a>
-                 </li>
-     
-     
-                 </ul>
-              </div>
-  
-  
-            </div>
-
-          </div>
-
-         
           <hr>
-        </div>
+            <div class="container ">
+              <div class="nav row  mb-3">
+  
+                <div class="col-lg-9 titulo "><a class="nav  nav-link  text-white "  href="index.html"> <img src="img/CORE_Logo-1.png" alt="" width="150" height="173" >  </a>
+                  <h1 class="mx-auto my-0 text-uppercase mt-5 ">Core Uruguay</h1>
+                </div>
+    
+                <div class="col-lg-3 pt-3 mt-4">
+                  <ul class="nav flex-column d-flex justify-content-end">
+                    <li class="nav-item">
+                     <a class="nav-link " href="novedades.html">NOVEDADES</a>
+                   </li>
+                   
+                  
+                   <li class="nav-item">
+                     <a class="nav-link  " href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+                   </li>
+                   <li class="nav-item">
+                     <a class="nav-link  " href="contacto.html">CONTACTO</a>
+                   </li>
+                   
+                   <li><a href="#" class="nav-link" data-toggle="modal" data-target="#ModalUsuario">INGRESAR / REGISTRARSE</a></li>
+                   
+                   <li><div id="contBienvenida" class="nav-link">
+            
+                  </div></li>
+                   </ul>
+  
+                  
+  
+                </div>
+                 
+                  
+                 
+                  
+                </div>
+                
+    
+              </div>
+  
+            
+  
+           </div>
      
       </header>
 
@@ -131,10 +141,10 @@
             
             
             <div class="modal-body">
-              <form  action="# "  >
+              <form  action=""  >
                 <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email">
+                  <label for="">Nombre:</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre de usuario" name="name">
               </div>
               <div class="form-group">
                 <label for="telefono">Contraseña:</label>
@@ -142,9 +152,9 @@
             </div>
             
             <div class="d-flex justify-content-around pt-3">
-              <button type="submit" class="btn btn-secondary">Ingresar</button>
-                <button type="submit" class="btn btn-secondary">Registrarse</button>
-                  <button type="reset" class="btn btn-secondary">Borrar</button>
+              <button type="button" class="btn btn-success" id= "btnIngresar">Ingresar</button>
+                <button type="button" class="btn btn-secondary">Registrarse</button>
+                  <button type="button" class="btn btn-secondary">Borrar</button>
             </div>
                 
                    
@@ -158,7 +168,7 @@
       
           </div>
         </div>
-      </div>       
+      </div>     
       <div class="prodYBusc  mt-3">
           
         <div class="container-fluid color1  border-top border-secondary border-bottom border-secondary border-right border-light cont2">
@@ -381,7 +391,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+    <script src="js/script.js"></script>
 
   </body>
 </html>
