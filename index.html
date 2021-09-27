@@ -93,8 +93,9 @@
               
               <div class="modal-body">
                 <div><img  src="img/carretilla.png " alt="" width="40" height="40"></div>
-                <br>
-                <h3>No tienes ningun producto en el carrito.</h3>
+                <hr>
+                <div id="carretilla"></div>
+                
               </div>
         
               <div></div>
@@ -160,11 +161,11 @@
               
               <div class="d-flex justify-content-around pt-3">
                 <button type="button" class="btn btn-success" id= "btnIngresar">Ingresar</button>
-                  <button type="button" class="btn btn-secondary">Registrarse</button>
+                  <button type="button" class="btn btn-secondary" id="btnRegistro">Registrarse</button>
                     <button type="button" class="btn btn-secondary">Borrar</button>
               </div>
                   
-                     
+              <p id="respuesta"></p>       
                   
               </form>
                 
@@ -230,7 +231,7 @@
               </div>
 
               <div class="col-lg-2 carrito  ">
-                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalCarrito" ><h4>CARRITO  &#128722</h4> </a>
+                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalCarrito" id="modalCarrito"><h4>CARRITO  &#128722</h4> </a>
 
               </div>
               
@@ -245,7 +246,7 @@
         <div class="row container mt-5 mb-3 pt-5 pb-5 " id="productos">
           
      
-    
+          <p id="respuesta2"></p>
             </div>
 
          
