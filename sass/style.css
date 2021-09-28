@@ -42,8 +42,15 @@ body {
   color: black;
 }
 
-#bienvenida h5 {
-  color: black;
+main #productos #respuesta2 {
+  margin-left: 32px;
+  color: #f1f1f1;
+  font-weight: bold;
+  font-size: large;
+}
+
+main #bienvenida a {
+  color: blue;
 }
 
 header .container-fluid {

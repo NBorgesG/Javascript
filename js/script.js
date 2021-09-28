@@ -30,6 +30,7 @@ class Usuario {
 
 const usuarios = [] || JSON.parse(localStorage.getItem(usuarios)); 
 const productos = [];
+const carrito = [];
 
 productos.push(new Producto(1,"Teclado Logitech Z21", 30, 33,"teclado.jpg"));
 productos.push(new Producto(2,"Mouse Kolke ", 18, 52,"mouse.jpg"));
@@ -37,9 +38,7 @@ productos.push(new Producto(3,"Monitor Gamer", 110, 10,"monitor.jpg"));
 productos.push(new Producto(4,"Auriculares Kolke 27C", 15, 97,"auriculares.jpg"));
 
 
-console.log(productos)
 
-const carrito = [];
 
 const respuesta2= document.getElementById("respuesta2")
 const inputNombre = document.getElementById("nombre");
@@ -49,8 +48,10 @@ const btn2 = document.getElementById("btnRegistro");
 const btn = document.getElementById("btnIngresar");
 const carretilla = document.getElementById("carretilla")
 const modalCarrito = document.getElementById("modalCarrito");
+const tienda = document.getElementById("productos")
 
 
+// Creo el usuario, lo sube al local storage pero me falta validarlo
 const crearUsuario = () => {
     let nombre= inputNombre.value;
     let pass = inputPass.value;
@@ -67,28 +68,12 @@ const crearUsuario = () => {
 
 btn2.onclick = () => {crearUsuario()};
 
-// const iniciarSesion = () =>{
-//     let nombre = inputNombre.value;
-//     let pass = inputPass.value;
-
-//     if(nombre != ""){
-//         let userName = usuarios.find(usuarios => usuarios.nombre == nombre);
-//         if(pass != ""){
-//             let pass = usuarios.find(usuarios => usuarios.pass == nombre);
-//         }
-//     }
-
-// }
-
-
-
-console.log(carrito);
-
+// Renderizo la tienda
 const mostrarTienda = () => {
    
     for (const producto of productos) {
         
-        const tienda = document.getElementById("productos")
+        
         let cardProducto = document.createElement("div")
         
         
@@ -114,54 +99,96 @@ const mostrarTienda = () => {
 
 }
 
+
+// Funcion comprar producto anidada al boton de la tienda
 function comprar(producto) {
+    
+
     let compra =carrito.find(objeto =>objeto.nombre === producto.nombre)
 
     if(compra){
         if(compra.cantidad < producto.stock){
             compra.aumentarCantidad();
+            tienda.appendChild(respuesta2);
+            respuesta2.innerHTML = "Producto agregado con exito!"
+    
+            setTimeout(() => {
+            respuesta2.innerHTML = "";
+            }, 1500);
         }else{
-            alert("No hay mas stock papa")}
-        }else{
+            respuesta2.innerHTML= "No hay mas stock del producto seleccionado"
+            setTimeout(() => {
+                respuesta2.innerHTML = "";
+                }, 1500);
+        }
+    }else{
+        producto.precio = producto.sumarIva();
         carrito.push(producto);
         producto.aumentarCantidad();
-    }
+
+        tienda.appendChild(respuesta2);
+        respuesta2.innerHTML = "Producto agregado con exito!"
     
+        setTimeout(() => {
+        respuesta2.innerHTML = "";
+        }, 1500);
+    }
+
     localStorage.setItem('carrito', JSON.stringify(carrito));
 
-    
 }
 
 
 
-
+//Cargo el carrito con los productos comprados, cantidades y suma total de factura
 function cargarCarrito(){
-    let carrito2 = JSON.parse(localStorage.getItem('carrito'))
 
-    if(carrito2){
-        for (let i = 0; i < carrito.length; i++) {
-            carrito2.push(new Producto(carrito2[i].id, carrito2[i].nombre,carrito2[i].precio,carrito2[i].stock,carrito2[i].img,carrito2[i].cantidad))
-            
-        }
+    carretilla.innerHTML= "";
 
-    }
-    const verProducto = document.createElement("div")
+    let carrito2 = JSON.parse(localStorage.getItem('carrito'));
+    let valorTotalFactura =0;
+    
+    if(carrito.length == 0 && carrito2){
+        for (let i = 0; i < carrito2.length; i++) {
+            carrito.push(new Producto(carrito2[i].id, carrito2[i].nombre,carrito2[i].precio,carrito2[i].stock,carrito2[i].img,carrito2[i].cantidad))
+            }
+         }
 
-    for (const producto of carrito2) {
-        
+    for (const producto of carrito) {
+        const verProducto = document.createElement("div")
+        let valorTotal = producto.precio * producto.cantidad;
+      
         carretilla.appendChild(verProducto);
         verProducto.innerHTML= `
                            <h3> Producto: ${producto.nombre}</h3>
                            <h3> Valor Unitario $ ${producto.precio}</h3>
                            <h3> Cantidad: ${producto.cantidad}</h3>
                            
-                           <h3> ________________________________</h3>`; 
+                           <h3> ________________________________</h3>
+                           <h3> Valor Total $ ${valorTotal}</h3>
+                           <h3> ________________________________</h3>`;     
+        valorTotalFactura = valorTotalFactura + valorTotal;
+        console.log(valorTotalFactura)
+    }
+    if(valorTotalFactura == 0){ 
+        carretilla.innerHTML= `<h3> ________________________________</h3>
+                                <h3> No agregaste ningun producto al carrito </h3>
+                                <h3> ________________________________</h3>`;
+    }else{
+        const valorFactura = document.createElement("div");
+        carretilla.appendChild(valorFactura);
+
+        valorFactura.innerHTML=`<h3>Valor Total Factura $ ${valorTotalFactura}</h3>
+                            <h3> ________________________________</h3>`;
     }
     
+
 }
 
 modalCarrito.addEventListener('click', () => cargarCarrito());    
 
+
+//Doy la bienvenida al usuario 
 const bienvUsuario = () =>{
     
     
@@ -173,6 +200,7 @@ const bienvUsuario = () =>{
     $('#ModalUsuario').modal('hide')
 
     }
+
 
 btn.onclick = () =>{bienvUsuario()};
 
