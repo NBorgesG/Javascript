@@ -41,11 +41,11 @@ productos.push(new Producto(4,"Auriculares Kolke 27C", 15, 97,"auriculares.jpg")
 
 
 const respuesta2= document.getElementById("respuesta2")
-const inputNombre = document.getElementById("nombre");
+const inputNombre = $("nombre");
 const inputPass = document.getElementById("contraseña");
 const respuesta = document.getElementById("respuesta");
 const btn2 = document.getElementById("btnRegistro");
-const btn = document.getElementById("btnIngresar");
+const btn = $("#btnIngresar");
 const carretilla = document.getElementById("carretilla")
 const modalCarrito = document.getElementById("modalCarrito");
 const tienda = document.getElementById("productos")
@@ -53,16 +53,21 @@ const tienda = document.getElementById("productos")
 
 // Creo el usuario, lo sube al local storage pero me falta validarlo
 const crearUsuario = () => {
-    let nombre= inputNombre.value;
-    let pass = inputPass.value;
+    let nombre= $("#nombre").val();
+    let pass = $("#contraseña").val();
     const usuario = new Usuario (nombre, pass);
 
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    $("#respuesta").append("Usuario creado con exito, ya puede iniciar sesion");
     
-    respuesta.innerHTML= "Usuario creado con exito, ya puede iniciar sesion";
-    inputNombre.value ="";
-    inputPass.value = "";
+
+    setTimeout(() => {
+        respuesta.innerHTML = "";
+        }, 1500);
+    
+    $("#nombre").val("");
+    $("#contraseña").val("");
 
 }
 
@@ -86,6 +91,8 @@ const mostrarTienda = () => {
                                             <h6 class="card-text"> Precio U$S ${producto.precio}</h6>
                                             <img class="card-img-top" src="img/${producto.img}" alt=${producto.id}>
                                             
+                                        
+                                            
                                         </div>
                                         <button class="btn btn-primary mb-3" id="${producto.id}">Agregar al Carrito</button>
                                     <button class="btn btn-primary">Agregar a favoritos</button>
@@ -103,7 +110,6 @@ const mostrarTienda = () => {
 // Funcion comprar producto anidada al boton de la tienda
 function comprar(producto) {
     
-
     let compra =carrito.find(objeto =>objeto.nombre === producto.nombre)
 
     if(compra){
@@ -111,7 +117,7 @@ function comprar(producto) {
             compra.aumentarCantidad();
             tienda.appendChild(respuesta2);
             respuesta2.innerHTML = "Producto agregado con exito!"
-    
+            
             setTimeout(() => {
             respuesta2.innerHTML = "";
             }, 1500);
@@ -169,6 +175,7 @@ function cargarCarrito(){
                            <h3> ________________________________</h3>`;     
         valorTotalFactura = valorTotalFactura + valorTotal;
         console.log(valorTotalFactura)
+        
     }
     if(valorTotalFactura == 0){ 
         carretilla.innerHTML= `<h3> ________________________________</h3>
@@ -189,21 +196,22 @@ modalCarrito.addEventListener('click', () => cargarCarrito());
 
 
 //Doy la bienvenida al usuario 
-const bienvUsuario = () =>{
-    
-    
-    const bienvenida = document.getElementById("contBienvenida");
 
-    bienvenida.innerHTML = `<h5 class= ""> Bienvenido/a ${inputNombre.value}</h5>
-                            `
-    
-    $('#ModalUsuario').modal('hide')
+// Inicio de Jquery
+$( () => {
+    const bienvUsuario = () =>{
+        $("#contBienvenida").append("<h5 > Bienvenido/a "+ $("#nombre").val()+"</h5>");  
+            
+        $('#ModalUsuario').modal('hide');
 
+        $("#nombre").val("");
+        $("#contraseña").val("");  
     }
 
-
-btn.onclick = () =>{bienvUsuario()};
-
+    $("#btnIngresar").on('click', () => bienvUsuario());
+    
+})
+//Fin de jquery
 
 
 mostrarTienda();
