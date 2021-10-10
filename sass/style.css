@@ -53,6 +53,20 @@ main #bienvenida a {
   color: blue;
 }
 
+.nav-link {
+  color: #f1f1f1;
+}
+
+#imgCarrito {
+  height: 30%;
+  width: 30%;
+}
+
+.divCarrito {
+  color: #111;
+  font-weight: bolder;
+}
+
 header .container-fluid {
   background: #024062;
   background: -webkit-gradient(linear, left top, right top, from(#024062), color-stop(20%, #020024), color-stop(80%, #020024), to(#024062));
@@ -79,12 +93,6 @@ header .container-fluid .container .nav h1 {
   color: whitesmoke;
   text-shadow: 0.1em 0.1em 0.2em white;
   line-height: 1.2;
-}
-
-header .container-fluid .container .nav h1:hover {
-  -webkit-transition: 0.8s;
-  transition: 0.8s;
-  font-size: 60px;
 }
 
 header .container-fluid .container ul li h5 {

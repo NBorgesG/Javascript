@@ -165,14 +165,20 @@ function cargarCarrito(){
         let valorTotal = producto.precio * producto.cantidad;
       
         carretilla.appendChild(verProducto);
-        verProducto.innerHTML= `
-                           <h3> Producto: ${producto.nombre}</h3>
-                           <h3> Valor Unitario $ ${producto.precio}</h3>
-                           <h3> Cantidad: ${producto.cantidad}</h3>
-                           
-                           <h3> ________________________________</h3>
-                           <h3> Valor Total $ ${valorTotal}</h3>
-                           <h3> ________________________________</h3>`;     
+        verProducto.innerHTML= ` <div class= "row divCarrito" >
+                                <div class ="col-md-4"><img class="card-img-top" id= "imgCarrito"src="img/${producto.img}" alt=${producto.id}></div>
+                                <br></br>
+                                <div class ="col-lg-2" >${producto.nombre}</div>
+                                <div class ="col-lg-2">Por unidad$ ${producto.precio}</div>
+                                <div class ="col-lg-2">Cantidad : ${producto.cantidad}</div>
+          
+                                <div class ="col-lg-2 divCarrito">
+                                 Total $ ${valorTotal}
+                                </div>  
+        
+                                </div>
+                         
+                           `;     
         valorTotalFactura = valorTotalFactura + valorTotal;
         console.log(valorTotalFactura)
         
@@ -185,8 +191,11 @@ function cargarCarrito(){
         const valorFactura = document.createElement("div");
         carretilla.appendChild(valorFactura);
 
-        valorFactura.innerHTML=`<h3>Valor Total Factura $ ${valorTotalFactura}</h3>
-                            <h3> ________________________________</h3>`;
+        valorFactura.innerHTML=`<div row justify-content-end>
+                             <h6> ________________________________</h6>
+                            Valor Total Factura $ ${valorTotalFactura}
+                            <h6> ________________________________</h6>
+                            </div> `;
     }
     
 
@@ -200,15 +209,38 @@ modalCarrito.addEventListener('click', () => cargarCarrito());
 // Inicio de Jquery
 $( () => {
     const bienvUsuario = () =>{
-        $("#contBienvenida").append("<h5 > Bienvenido/a "+ $("#nombre").val()+"</h5>");  
+        
+        $("#contBienvenida").text("Bienvenido/a " + $("#nombre").val())
             
         $('#ModalUsuario').modal('hide');
 
         $("#nombre").val("");
-        $("#contraseña").val("");  
+        $("#contraseña").val("");
+          
     }
 
-    $("#btnIngresar").on('click', () => bienvUsuario());
+    $("#btnIngresar").click(() => bienvUsuario());
+  
+    let tituloCore= $("#tituloCore")
+    
+    
+
+    $("#tituloCore").mouseover(() => { 
+        tituloCore.animate({ 
+            transition: "0.8", 
+            "font-size":"60px"   
+        });
+    });
+
+    tituloCore.mouseleave(() => { 
+        tituloCore.animate({
+            transition: "0.8",
+            "font-size":"50px" 
+        })
+    });
+    
+        
+        
     
 })
 //Fin de jquery

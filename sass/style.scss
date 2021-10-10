@@ -79,8 +79,18 @@ main{
 
 }
 
+.nav-link{
+  color: #f1f1f1;
+}
 
-
+#imgCarrito{
+  height: 30%;
+  width: 30%;
+}
+.divCarrito{
+  color: #111;
+  font-weight: bolder;
+}
 
 header{
   
@@ -103,10 +113,7 @@ header{
             text-shadow: 0.1em 0.1em 0.2em rgb(255, 255, 255);
             line-height: 1.2;
           }
-          h1:hover{
-            transition: 0.8s;
-            font-size: 60px;
-          }
+          
           
         
       }
