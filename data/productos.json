@@ -1,0 +1,38 @@
+ {
+    "productos":[{
+            "id":1,
+            "nombre":"Teclado Logitech z21",
+            "precio":30,
+            "stock":33,
+            "img":"teclado.jpg",
+            "cantidad":0
+        },
+        {
+            "id":2,
+            "nombre":"Mouse kolke ",
+            "precio":18,
+            "stock":52,
+            "img":"mouse.jpg",
+            "cantidad":0
+        },
+        {
+            "id":3,
+            "nombre":"Monitor Gamer",
+            "precio":110,
+            "stock":10,
+            "img":"monitor.jpg",
+            "cantidad":0
+        },
+        {
+            "id":4,
+            "nombre":"Auriculares Gamer 27c",
+            "precio":15,
+            "stock":97,
+            "img":"auriculares.jpg",
+            "cantidad":0
+        }
+        
+        
+        
+    ]
+}

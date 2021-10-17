@@ -78,7 +78,14 @@ main{
    }
 
 }
-
+#valorFactura{
+  color: #111;
+  font-weight: bolder;
+  h5{
+    color: #111;
+    font-weight: bolder;
+  }
+}
 .nav-link{
   color: #f1f1f1;
 }
@@ -91,7 +98,13 @@ main{
   color: #111;
   font-weight: bolder;
 }
+.btns{
+  img{
+    width: 40px;
+    height: 30px;
+  }
 
+}
 header{
   
   .container-fluid{

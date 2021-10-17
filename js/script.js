@@ -3,6 +3,7 @@ class Producto {
     constructor (id,nombre, precio,stock,img,cantidad){
         this.id=id;
         this.nombre=nombre; 
+        
         this.precio=precio;        
         this.stock=stock;
         this.img=img;
@@ -73,38 +74,6 @@ const crearUsuario = () => {
 
 btn2.onclick = () => {crearUsuario()};
 
-// Renderizo la tienda
-const mostrarTienda = () => {
-   
-    for (const producto of productos) {
-        
-        
-        let cardProducto = document.createElement("div")
-        
-        
-        cardProducto.innerHTML = ` 
-                                    <div class= "container">
-                                    <div class="card mb-3 ">
-                                    <div class="card-body  prod3 ">
-                                        
-                                            <h5 class="card-title">${producto.nombre}</h5>
-                                            <h6 class="card-text"> Precio U$S ${producto.precio}</h6>
-                                            <img class="card-img-top" src="img/${producto.img}" alt=${producto.id}>
-                                            
-                                        
-                                            
-                                        </div>
-                                        <button class="btn btn-primary mb-3" id="${producto.id}">Agregar al Carrito</button>
-                                    <button class="btn btn-primary">Agregar a favoritos</button>
-                                    </div>
-                                    </div>`;
-
-        tienda.appendChild(cardProducto);     
-        document.getElementById(`${producto.id}`).addEventListener('click', () => comprar(producto))                                   
-    }
-
-
-}
 
 
 // Funcion comprar producto anidada al boton de la tienda
@@ -161,21 +130,26 @@ function cargarCarrito(){
          }
 
     for (const producto of carrito) {
-        const verProducto = document.createElement("div")
+        
         let valorTotal = producto.precio * producto.cantidad;
-      
+        const verProducto = document.createElement("div")
         carretilla.appendChild(verProducto);
         verProducto.innerHTML= ` <div class= "row divCarrito" >
-                                <div class ="col-md-4"><img class="card-img-top" id= "imgCarrito"src="img/${producto.img}" alt=${producto.id}></div>
-                                <br></br>
-                                <div class ="col-lg-2" >${producto.nombre}</div>
-                                <div class ="col-lg-2">Por unidad$ ${producto.precio}</div>
-                                <div class ="col-lg-2">Cantidad : ${producto.cantidad}</div>
+                                <div class ="col-md-2"><img class="card-img-top" id= "imgCarrito"src="img/${producto.img}" alt=${producto.id}><br>${producto.nombre}</div>
+                                
+                                
+                                <div class ="col-md-2">Por unidad$ ${producto.precio}</div>
+                                <div class ="col-md-2">Cantidad : ${producto.cantidad}</div>
           
-                                <div class ="col-lg-2 divCarrito">
+                                <div class ="col-md-2 divCarrito">
                                  Total $ ${valorTotal}
+                                 
                                 </div>  
-        
+                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="btnResta"> <img src="img/resta.png" alt="" ></button>
+                                <button type="button" class="btn  btns"> <img src="img/suma.png" alt="" id="btnSuma"></button>
+                                <button type="button" class="btn  btns"> <img src="img/basura.png" alt="" id="btnBorrar"></button>
+                                </div>    
+                                <h6>______________________________________________________________</h6>   
                                 </div>
                          
                            `;     
@@ -191,9 +165,10 @@ function cargarCarrito(){
         const valorFactura = document.createElement("div");
         carretilla.appendChild(valorFactura);
 
-        valorFactura.innerHTML=`<div row justify-content-end>
+        valorFactura.innerHTML=`<div row justify-content-end >
                              <h6> ________________________________</h6>
-                            Valor Total Factura $ ${valorTotalFactura}
+                             <h5> Valor Total Factura $ ${valorTotalFactura}</h5>
+                            
                             <h6> ________________________________</h6>
                             </div> `;
     }
@@ -202,6 +177,7 @@ function cargarCarrito(){
 }
 
 modalCarrito.addEventListener('click', () => cargarCarrito());    
+
 
 
 //Doy la bienvenida al usuario 
@@ -238,14 +214,49 @@ $( () => {
             "font-size":"50px" 
         })
     });
+
+
+//La nueva tienda ahora se carga por json 
+const URLJSON ="data/productos.json"          
+  
+    $.getJSON(URLJSON, function (respuesta, estado) {
+            if(estado==="success"){
+                let misDatos = respuesta.productos;
+                console.log(misDatos)
+
+                for (const dato of productos) {
+
+                    $("#productos").prepend(`<div id="cardProducto"></div>`);
+
+                    $("#cardProducto").prepend( ` <div class= "container">
+                                        <div class="card mb-3 ">
+                                            <div class="card-body  prod3 ">
+                        
+                                                <h5 class="card-title">${dato.nombre}</h5>
+                                             <h6 class="card-text"> Precio U$S ${dato.precio}</h6>
+                            <img class="card-img-top" src="img/${dato.img}" alt=${dato.id}>
+                             </div>
+                        <button class="btn btn-primary mb-3" id="${dato.id}">Agregar al Carrito</button>
+                    <button class="btn btn-primary">Agregar a favoritos</button>
+                    </div>
+                    </div>`);
+
+                    document.getElementById(`${dato.id}`).addEventListener('click', () => comprar(dato)) 
+                    
+                }
+            }
+        }
+    );
+
+
+   });
     
-        
-        
-    
-})
+
+
+
 //Fin de jquery
 
 
-mostrarTienda();
+//mostrarTienda();
 
 
