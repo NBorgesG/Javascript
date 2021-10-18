@@ -28,17 +28,10 @@ class Usuario {
     }
 }
 
-
 const usuarios = [] || JSON.parse(localStorage.getItem(usuarios)); 
 const productos = [];
 const carrito = [];
-
-productos.push(new Producto(1,"Teclado Logitech Z21", 30, 33,"teclado.jpg"));
-productos.push(new Producto(2,"Mouse Kolke ", 18, 52,"mouse.jpg"));
-productos.push(new Producto(3,"Monitor Gamer", 110, 10,"monitor.jpg"));
-productos.push(new Producto(4,"Auriculares Kolke 27C", 15, 97,"auriculares.jpg"));
-
-
+const favoritos = [];
 
 
 const respuesta2= document.getElementById("respuesta2")
@@ -110,22 +103,19 @@ function comprar(producto) {
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
-
 }
-
-
 
 //Cargo el carrito con los productos comprados, cantidades y suma total de factura
 function cargarCarrito(){
 
     carretilla.innerHTML= "";
 
-    let carrito2 = JSON.parse(localStorage.getItem('carrito'));
+    let misDatos = JSON.parse(localStorage.getItem('carrito'));
     let valorTotalFactura =0;
     
-    if(carrito.length == 0 && carrito2){
-        for (let i = 0; i < carrito2.length; i++) {
-            carrito.push(new Producto(carrito2[i].id, carrito2[i].nombre,carrito2[i].precio,carrito2[i].stock,carrito2[i].img,carrito2[i].cantidad))
+    if(carrito.length == 0 && misDatos){
+        for (let i = 0; i < misDatos.length; i++) {
+            carrito.push(new Producto(misDatos[i].id, misDatos[i].nombre,misDatos[i].precio,misDatos[i].stock,misDatos[i].img,misDatos[i].cantidad))
             }
          }
 
@@ -145,18 +135,15 @@ function cargarCarrito(){
                                  Total $ ${valorTotal}
                                  
                                 </div>  
-                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="btnResta"> <img src="img/resta.png" alt="" ></button>
-                                <button type="button" class="btn  btns"> <img src="img/suma.png" alt="" id="btnSuma"></button>
-                                <button type="button" class="btn  btns"> <img src="img/basura.png" alt="" id="btnBorrar"></button>
+                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="${producto.id}"> <img src="img/resta.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/suma.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/basura.png" alt="" ></button>
                                 </div>    
                                 <h6>______________________________________________________________</h6>   
-                                </div>
-                         
-                           `;     
+                                </div>`;     
         valorTotalFactura = valorTotalFactura + valorTotal;
-        console.log(valorTotalFactura)
         
-    }
+        }
     if(valorTotalFactura == 0){ 
         carretilla.innerHTML= `<h3> ________________________________</h3>
                                 <h3> No agregaste ningun producto al carrito </h3>
@@ -172,11 +159,11 @@ function cargarCarrito(){
                             <h6> ________________________________</h6>
                             </div> `;
     }
-    
-
 }
 
 modalCarrito.addEventListener('click', () => cargarCarrito());    
+
+
 
 
 
@@ -185,22 +172,16 @@ modalCarrito.addEventListener('click', () => cargarCarrito());
 // Inicio de Jquery
 $( () => {
     const bienvUsuario = () =>{
-        
         $("#contBienvenida").text("Bienvenido/a " + $("#nombre").val())
-            
         $('#ModalUsuario').modal('hide');
-
         $("#nombre").val("");
         $("#contraseña").val("");
-          
     }
 
     $("#btnIngresar").click(() => bienvUsuario());
   
     let tituloCore= $("#tituloCore")
     
-    
-
     $("#tituloCore").mouseover(() => { 
         tituloCore.animate({ 
             transition: "0.8", 
@@ -214,7 +195,8 @@ $( () => {
             "font-size":"50px" 
         })
     });
-
+    
+   
 
 //La nueva tienda ahora se carga por json 
 const URLJSON ="data/productos.json"          
@@ -222,31 +204,60 @@ const URLJSON ="data/productos.json"
     $.getJSON(URLJSON, function (respuesta, estado) {
             if(estado==="success"){
                 let misDatos = respuesta.productos;
-                console.log(misDatos)
 
-                for (const dato of productos) {
+                if(misDatos){
+                    for (let i = 0; i < misDatos.length; i++) {
+                        productos.push(new Producto(misDatos[i].id, misDatos[i].nombre,misDatos[i].precio,misDatos[i].stock,misDatos[i].img,misDatos[i].cantidad))
+                        }
+                }
+
+                for (const producto of productos) {
 
                     $("#productos").prepend(`<div id="cardProducto"></div>`);
 
                     $("#cardProducto").prepend( ` <div class= "container">
-                                        <div class="card mb-3 ">
-                                            <div class="card-body  prod3 ">
-                        
-                                                <h5 class="card-title">${dato.nombre}</h5>
-                                             <h6 class="card-text"> Precio U$S ${dato.precio}</h6>
-                            <img class="card-img-top" src="img/${dato.img}" alt=${dato.id}>
-                             </div>
-                        <button class="btn btn-primary mb-3" id="${dato.id}">Agregar al Carrito</button>
-                    <button class="btn btn-primary">Agregar a favoritos</button>
-                    </div>
-                    </div>`);
+                                                    <div class="card mb-3 ">
+                                                        <div class="card-body  prod3 ">
+                                                            <h5 class="card-title">${producto.nombre}</h5>
+                                                            <h6 class="card-text"> Precio U$S ${producto.precio}</h6>
+                                                            <img class="card-img-top" src="img/${producto.img}" alt=${producto.id}>
+                                                            </div>
+                                                        <button class="btn btn-primary mb-3" id="comprar-${producto.id}">Agregar al Carrito</button>
+                                                        <button class="btn btn-primary" id="agregarFav-${producto.id}">Agregar a favoritos</button>
+                                                        </div>
+                                                    </div>`);
 
-                    document.getElementById(`${dato.id}`).addEventListener('click', () => comprar(dato)) 
+                    document.getElementById(`comprar-${producto.id}`).addEventListener('click', () => comprar(producto))
+                    document.getElementById(`agregarFav-${producto.id}`).addEventListener('click', () => agregarFav(producto))
+                    
                     
                 }
             }
         }
     );
+    
+    const agregarFav = (producto) =>{
+        let productoFav = favoritos.find(elem => elem.id === producto.id);
+            if(productoFav ){
+                return;
+            }else{
+                favoritos.push(producto);
+                
+            }
+        
+            localStorage.setItem('prodFavoritos', JSON.stringify(favoritos));
+    }
+
+    $("#ModalFavorito").click( ()=>{
+        let mostrarFavoritos = JSON.parse(localStorage.getItem('prodFavoritos'));
+
+            for (const producto of mostrarFavoritos) {
+                console.log(producto)
+                $("#modalFav").append(`<div><h3>${producto.nombre}</h3></div>`);
+            }
+    })
+
+    
 
 
    });
