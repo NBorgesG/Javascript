@@ -110,12 +110,12 @@ function cargarCarrito(){
 
     carretilla.innerHTML= "";
 
-    let misDatos = JSON.parse(localStorage.getItem('carrito'));
+    let carrito2 = JSON.parse(localStorage.getItem('carrito'));
     let valorTotalFactura =0;
     
-    if(carrito.length == 0 && misDatos){
-        for (let i = 0; i < misDatos.length; i++) {
-            carrito.push(new Producto(misDatos[i].id, misDatos[i].nombre,misDatos[i].precio,misDatos[i].stock,misDatos[i].img,misDatos[i].cantidad))
+    if(carrito.length == 0 && carrito2){
+        for (let i = 0; i < carrito2.length; i++) {
+            carrito.push(new Producto(carrito2[i].id, carrito2[i].nombre,carrito2[i].precio,carrito2[i].stock,carrito2[i].img,carrito2[i].cantidad))
             }
          }
 
@@ -142,7 +142,7 @@ function cargarCarrito(){
                                 <h6>______________________________________________________________</h6>   
                                 </div>`;     
         valorTotalFactura = valorTotalFactura + valorTotal;
-        
+        console.log(valorTotalFactura)
         }
     if(valorTotalFactura == 0){ 
         carretilla.innerHTML= `<h3> ________________________________</h3>
@@ -204,11 +204,11 @@ const URLJSON ="data/productos.json"
     $.getJSON(URLJSON, function (respuesta, estado) {
             if(estado==="success"){
                 let misDatos = respuesta.productos;
-
                 if(misDatos){
                     for (let i = 0; i < misDatos.length; i++) {
                         productos.push(new Producto(misDatos[i].id, misDatos[i].nombre,misDatos[i].precio,misDatos[i].stock,misDatos[i].img,misDatos[i].cantidad))
-                        }
+                        
+                    }
                 }
 
                 for (const producto of productos) {
