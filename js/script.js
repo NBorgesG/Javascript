@@ -135,9 +135,9 @@ function cargarCarrito(){
                                  Total $ ${valorTotal}
                                  
                                 </div>  
-                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="${producto.id}"> <img src="img/resta.png" alt="" ></button>
-                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/suma.png" alt="" ></button>
-                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/basura.png" alt="" ></button>
+                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="resta-${producto.id}"> <img src="img/resta.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="suma-${producto.id}"> <img src="img/suma.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="eliminar-${producto.id}"> <img src="img/basura.png" alt="" ></button>
                                 </div>    
                                 <h6>______________________________________________________________</h6>   
                                 </div>`;     
@@ -152,7 +152,7 @@ function cargarCarrito(){
         const valorFactura = document.createElement("div");
         carretilla.appendChild(valorFactura);
 
-        valorFactura.innerHTML=`<div row justify-content-end >
+        valorFactura.innerHTML=`<div row d-flex justify-content-end >
                              <h6> ________________________________</h6>
                              <h5> Valor Total Factura $ ${valorTotalFactura}</h5>
                             
@@ -239,25 +239,35 @@ const URLJSON ="data/productos.json"
     const agregarFav = (producto) =>{
         let productoFav = favoritos.find(elem => elem.id === producto.id);
             if(productoFav ){
-                return;
+                $("#respuesta2").append("Ya agregaste este producto a favoritos!"); 
+                setTimeout(() => {
+                    respuesta2.innerHTML = "";
+                    }, 1000); 
             }else{
                 favoritos.push(producto);
-                
+                $("#modalFav").append(`<div><h3>${producto.nombre}</h3></div>`);
+                $("#respuesta2").append("Producto agregado a favoritos!");
+                setTimeout(() => {
+                    respuesta2.innerHTML = "";
+                    }, 1000);
             }
         
             localStorage.setItem('prodFavoritos', JSON.stringify(favoritos));
     }
 
-    $("#ModalFavorito").click( ()=>{
-        let mostrarFavoritos = JSON.parse(localStorage.getItem('prodFavoritos'));
+   
 
-            for (const producto of mostrarFavoritos) {
-                console.log(producto)
-                $("#modalFav").append(`<div><h3>${producto.nombre}</h3></div>`);
-            }
+    $("#btnBuscar").click(() =>{
+        let valorBusqueda = $("#inputBusqueda").val();
+        
+        const busqueda = productos.find(elemento => elemento.nombre.includes(valorBusqueda))
+        
+        if(busqueda){
+
+            $("#productos").append(``)
+        }
+        
     })
-
-    
 
 
    });
