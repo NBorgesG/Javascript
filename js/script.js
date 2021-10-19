@@ -1,3 +1,5 @@
+$( () => {
+
 class Producto {
 
     constructor (id,nombre, precio,stock,img,cantidad){
@@ -105,6 +107,7 @@ function comprar(producto) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
+
 //Cargo el carrito con los productos comprados, cantidades y suma total de factura
 function cargarCarrito(){
 
@@ -135,14 +138,16 @@ function cargarCarrito(){
                                  Total $ ${valorTotal}
                                  
                                 </div>  
-                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="${producto.id}"> <img src="img/resta.png" alt="" ></button>
-                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/suma.png" alt="" ></button>
-                                <button type="button" class="btn  btns id="${producto.id}"> <img src="img/basura.png" alt="" ></button>
+                                <div class ="col-lg-4 divCarrito "> <button type="button" class="btn btns id="resta-${producto.id}"> <img src="img/resta.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="suma-${producto.id}"> <img src="img/suma.png" alt="" ></button>
+                                <button type="button" class="btn  btns id="borrar-${producto.id}"> <img src="img/basura.png" alt="" ></button>
                                 </div>    
                                 <h6>______________________________________________________________</h6>   
                                 </div>`;     
         valorTotalFactura = valorTotalFactura + valorTotal;
-        console.log(valorTotalFactura)
+        
+        
+        
         }
     if(valorTotalFactura == 0){ 
         carretilla.innerHTML= `<h3> ________________________________</h3>
@@ -163,14 +168,16 @@ function cargarCarrito(){
 
 modalCarrito.addEventListener('click', () => cargarCarrito());    
 
-
+//Buscador, en construccion :S
+$("#btnBuscar").click(()=>{
+    let busca = $("#inputBuscar").val().toUpperCase();
+    let busqueda = productos.find(producto => producto.id.toUpperCase().includes(busca));
+    $("#productos").append(busqueda)
+})
 
 
 
 //Doy la bienvenida al usuario 
-
-// Inicio de Jquery
-$( () => {
     const bienvUsuario = () =>{
         $("#contBienvenida").text("Bienvenido/a " + $("#nombre").val())
         $('#ModalUsuario').modal('hide');
@@ -236,38 +243,35 @@ const URLJSON ="data/productos.json"
         }
     );
     
+
+
+    //Agrego a favoritos, puedo comprar productos agregados en favoritos, en proceso aunque que los guarde en el local storage
     const agregarFav = (producto) =>{
         let productoFav = favoritos.find(elem => elem.id === producto.id);
             if(productoFav ){
                 return;
             }else{
                 favoritos.push(producto);
-                
+                $("#modalFav").append(`  <div class="row">
+                                        <div class="col-lg-6"><h3>${producto.nombre}</h3></div>
+                                        <div class="col-lg-6"><button class="btn btn-primary" id="comprar2-${producto.id}">Comprar</button></div> 
+                                        </div>
+                                        `);
+                $("#respuesta2").append("Producto agregado a favoritos con exito!") 
+                setTimeout(() => {
+                    respuesta2.innerHTML = "";
+                    }, 1000);
+                    document.getElementById(`comprar2-${producto.id}`).addEventListener('click', () => comprar(producto))    
             }
         
             localStorage.setItem('prodFavoritos', JSON.stringify(favoritos));
     }
 
-    $("#ModalFavorito").click( ()=>{
-        let mostrarFavoritos = JSON.parse(localStorage.getItem('prodFavoritos'));
-
-            for (const producto of mostrarFavoritos) {
-                console.log(producto)
-                $("#modalFav").append(`<div><h3>${producto.nombre}</h3></div>`);
-            }
-    })
+    
 
     
 
 
    });
     
-
-
-
-//Fin de jquery
-
-
-//mostrarTienda();
-
 
