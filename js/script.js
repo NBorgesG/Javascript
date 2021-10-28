@@ -40,17 +40,12 @@ $(() => {
 
 
     const respuesta2 = document.getElementById("respuesta2")
-    const inputNombre = $("nombre");
-    const inputPass = document.getElementById("contraseña");
     const respuesta = document.getElementById("respuesta");
     const btn2 = document.getElementById("btnRegistro");
-    const btn = $("#btnIngresar");
     const carretilla = document.getElementById("carretilla")
     const modalCarrito = document.getElementById("modalCarrito");
-    const tienda = document.getElementById("productos")
-    const btnSumar= document.getElementById("suma-${producto.id}")
-    const btnRestar=document.getElementById("resta-${producto.id}")
-    const btnEliminar= document.getElementById("borrar-${producto.id}")
+    
+    
 
 
 
@@ -187,16 +182,16 @@ $(() => {
 
             $("#verProducto").append(` <div class= "row divCarrito" >
                                                 <div class ="col-md-2"><img class="card-img-top" id= "imgCarrito"src="img/${producto.img}" alt=${producto.id}><br>${producto.nombre}</div>
-                                                    <div class ="col-md-2">Por unidad$ ${producto.precio}</div>
-                                                        <div class ="col-md-2">Cantidad : ${producto.cantidad}</div>
+                                                    <div class ="col-md-2"><h6>Por unidad$ ${producto.precio}</h6></div>
+                                                        <div class ="col-md-2" id="cantProducto"><h6 id="cantProducto">Cantidad : ${producto.cantidad}</h6></div>
 
                                                     <div class ="col-md-2 divCarrito">
                                          Total $ ${valorTotal}
                  
                                                         </div>  
-                                         <button type="button" class="btn btns id="resta-${producto.id}"> resta</button>
-                                        <button type="button" class="btn  btns id="suma-${producto.id}"> suma</button>
-                                        <button type="button" class="btn  btns id="borrar-${producto.id}"> eliminar</button>
+                                         <button type="button" class="btn btns" id="resta-${producto.id}"> resta</button>
+                                        <button type="button" class="btn btns" id="suma-${producto.id}"> suma</button>
+                                        <button type="button" class="btn btns" id="borrar-${producto.id}"> eliminar</button>
                                            
                                         <h6>______________________________________________________________</h6>   
                                         </div>`)
@@ -224,20 +219,21 @@ $(() => {
                             <h6> ________________________________</h6>
                             </div> `;
         }
-        
+        localStorage.setItem('carrito', JSON.stringify(carrito));   
     }
 
-    
     modalCarrito.addEventListener('click', () => cargarCarrito());
 
     function restarCarrito(producto) { 
-        console.log("hola")
-        let objeto = carrito.find(elemento =>elemento.id ===producto.id);
+        
+        let objeto = carrito.find(elemento =>elemento.id === producto.id);
         
         if(objeto.cantidad > 1){
             producto.restarCantidad();
+            cargarCarrito();
         }else{
             eliminarCarrito();
+            cargarCarrito();
         }
 
      }
@@ -249,12 +245,17 @@ $(() => {
         
         if(objeto){
             producto.aumentarCantidad();
+            cargarCarrito();
         }    
     }
 
     const eliminarCarrito = (producto) => {
-        let objeto = carrito.filter(elemento =>elemento.id !== producto.id);
-        console.log(objeto)
+
+        let objeto = carrito.indexOf(producto);
+        carrito.splice(objeto,1);
+        localStorage.setItem('carrito', JSON.stringify(carrito));  
+        cargarCarrito();
+            
     }
 
     
