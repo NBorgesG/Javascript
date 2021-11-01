@@ -45,12 +45,8 @@ $(() => {
     const carretilla = document.getElementById("carretilla")
     const modalCarrito = document.getElementById("modalCarrito");
     
-    
 
-
-
-
-    // Creo el usuario, lo sube al local storage pero me falta validarlo
+    // Creo el usuario
     const crearUsuario = () => {
         let nombre = $("#nombre").val();
         let pass = $("#contraseña").val();
@@ -75,7 +71,36 @@ $(() => {
     };
 
     
-    //La nueva tienda ahora se carga por json 
+
+    //Doy la bienvenida al usuario 
+    const bienvUsuario = () => {
+        $("#contBienvenida").text("Bienvenido/a " + $("#nombre").val())
+        $('#ModalUsuario').modal('hide');
+        $("#nombre").val("");
+        $("#contraseña").val("");
+    }
+
+    $("#btnIngresar").click(() => bienvUsuario());
+
+    let tituloCore = $("#tituloCore")
+
+    $("#tituloCore").mouseover(() => {
+        tituloCore.animate({
+            transition: "0.8",
+            "font-size": "60px"
+        });
+    });
+
+    tituloCore.mouseleave(() => {
+        tituloCore.animate({
+            transition: "0.8",
+            "font-size": "50px"
+        })
+    });
+
+
+   function cargarTienda(){
+        
     const URLJSON = "data/productos.json"
 
     $.getJSON(URLJSON, function (respuesta, estado) {
@@ -84,15 +109,12 @@ $(() => {
             if (misDatos) {
                 for (let i = 0; i < misDatos.length; i++) {
                     productos.push(new Producto(misDatos[i].id, misDatos[i].nombre, misDatos[i].precio, misDatos[i].stock, misDatos[i].img, misDatos[i].cantidad))
-
                 }
             }
 
             for (const producto of productos) {
-
                 $("#productos").prepend(`<div id="cardProducto"></div>`);
-
-                $("#cardProducto").prepend(` <div class= "container">
+                $("#cardProducto").prepend(` <div class= "container prueba">
                                                     <div class="card mb-3 ">
                                                         <div class="card-body  prod3 ">
                                                             <h5 class="card-title">${producto.nombre}</h5>
@@ -106,12 +128,14 @@ $(() => {
 
                 document.getElementById(`comprar-${producto.id}`).addEventListener('click', () => comprar(producto))
                 document.getElementById(`agregarFav-${producto.id}`).addEventListener('click', () => agregarFav(producto))
-
-
-            }
+                }
         }
     });
 
+   } 
+
+   cargarTienda();
+    
     // Funcion comprar producto anidada al boton de la tienda
     function comprar(producto) {
 
@@ -225,7 +249,6 @@ $(() => {
     modalCarrito.addEventListener('click', () => cargarCarrito());
 
     function restarCarrito(producto) { 
-        
         let objeto = carrito.find(elemento =>elemento.id === producto.id);
         
         if(objeto.cantidad > 1){
@@ -235,73 +258,72 @@ $(() => {
             eliminarCarrito();
             cargarCarrito();
         }
-
-     }
+    }
     
-
-
     const sumarCarrito = (producto) => {
         let objeto = carrito.find(elemento => elemento.id === producto.id);
-        
-        if(objeto){
+         if(objeto){
             producto.aumentarCantidad();
             cargarCarrito();
         }    
     }
 
     const eliminarCarrito = (producto) => {
-
         let objeto = carrito.indexOf(producto);
         carrito.splice(objeto,1);
         localStorage.setItem('carrito', JSON.stringify(carrito));  
         cargarCarrito();
-            
     }
 
     
-    
-
-    //Buscador, en construccion :S
     $("#btnBuscar").click(() => {
         let busca = $("#inputBuscar").val().toUpperCase();
-        let busqueda = productos.find(producto => producto.id.toUpperCase().includes(busca));
-        $("#productos").append(busqueda)
+        
+        let busqueda = productos.filter(producto => producto.nombre.toUpperCase().includes(busca));
+        
+
+        if(busqueda){
+            $(".prueba").hide();
+            for (const producto of busqueda) {
+                $("#productos").prepend(`<div id="cardProducto"></div>`);
+
+           $("#cardProducto").append(` <div class= "container">
+                   <div class="card mb-3 ">
+           <div class="card-body  prod3 ">
+               <h5 class="card-title">${producto.nombre}</h5>
+               <h6 class="card-text"> Precio U$S ${producto.precio}</h6>
+               <img class="card-img-top" src="img/${producto.img}" alt=${producto.id}>
+               </div>
+           <button class="btn btn-primary mb-3" id="comprar-${producto.id}">Agregar al Carrito</button>
+           <button class="btn btn-primary" id="agregarFav-${producto.id}">Agregar a favoritos</button>
+           </div>
+       </div>`);
+            }
+
+        }else{
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'No existe ningun producto con ese nombre',
+                showConfirmButton: false,
+                timer: 1500
+              })
+                $(".prueba").show();  
+
+
+
+        }
+        
+            
+
+        
+        
+        
+        
+       
     })
 
-
-
-    //Doy la bienvenida al usuario 
-    const bienvUsuario = () => {
-        $("#contBienvenida").text("Bienvenido/a " + $("#nombre").val())
-        $('#ModalUsuario').modal('hide');
-        $("#nombre").val("");
-        $("#contraseña").val("");
-    }
-
-    $("#btnIngresar").click(() => bienvUsuario());
-
-    let tituloCore = $("#tituloCore")
-
-    $("#tituloCore").mouseover(() => {
-        tituloCore.animate({
-            transition: "0.8",
-            "font-size": "60px"
-        });
-    });
-
-    tituloCore.mouseleave(() => {
-        tituloCore.animate({
-            transition: "0.8",
-            "font-size": "50px"
-        })
-    });
-
-
-
-
-
-
-    //Agrego a favoritos, puedo comprar productos agregados en favoritos, en proceso aunque que los guarde en el local storage
+    //Agrego a favoritos, puedo comprar productos agregados en favoritos
     const agregarFav = (producto) => {
         let productoFav = favoritos.find(elem => elem.id === producto.id);
         if (productoFav) {
@@ -328,10 +350,5 @@ $(() => {
 
         localStorage.setItem('prodFavoritos', JSON.stringify(favoritos));
     }
-
-
-
-
-
 
 });
