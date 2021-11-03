@@ -90,16 +90,26 @@ main{
   color: #f1f1f1;
 }
 
-#imgCarrito{
-  height: 30%;
-  width: 30%;
+.imgCarrito{
+  height: 40%;
+  width: 40%;
 }
 .divCarrito{
   color: #111;
   font-weight: bolder;
-  h6{
+  align-items: center;
+  align-content: center;
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  h6,h5,h3{
     color: #111;
-  }
+    font-weight: bolder;  }
+}
+
+#contBusqueda{
+  justify-content: center;
 }
 .btns{
   img{
@@ -108,6 +118,16 @@ main{
     
   }
 
+}
+#boleta{
+  h5,h4{
+    color: #111;
+    font-weight: bolder;
+  }
+  .bol{
+    
+    justify-content: end;
+  }
 }
 
 

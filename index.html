@@ -39,9 +39,7 @@
   
               <div class="col-lg-3 pt-3 mt-4">
                 <ul class="nav flex-column d-flex justify-content-end">
-                  <li class="nav-item">
-                   <a class="nav-link " href="novedades.html">NOVEDADES</a>
-                 </li>
+                  
                  
                 
                  <li class="nav-item">
@@ -79,7 +77,89 @@
       </header>
       
       <main>
+        <div  class="modal fade " id="modalSobreNosotros">
+          <div class="modal-dialog modal-lg modal-dialog-centered ">
+            <div class="modal-content ">
         
+              
+              <div class="modal-header ">
+                <h2 class="modal-title">CARRITO</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+              </div>
+              
+              
+              <div class="modal-body" id="modalSobreNos">
+                <div>
+                  <div class="container pb-3 mb-5 mt-5 bg-secondary border border-secondary contPrincipal">
+            <div class="titulo color1 text-center mt-3 mb-3">
+                <h1 class="pt-3 pb-3">SOBRE NOSOTROS</h1>  
+            </div>
+          
+            
+          <div class="container color2 text-center pt-5 pb-3">
+            
+                <H2 class="pb-5">Políticas de Garantía</H2>
+                
+               
+                <ol >
+                    <li> Las garantías cubren defectos de fabricación, esto no comprende uso o manipulación indebida, daños físicos, deterioro producido por cualquier agente externo (humedad, picos de tensión u otro)</li> <br>
+                    
+                    <li>Para iniciar la gestión de una garantía es necesario presentar factura de compra.</li><br>
+                    
+                    <li>El artículo a ser ingresado al servicio de garantía debe contar con los seriales identificatorios en el propio artículo y en su caja original.</li><br>
+                    <li>La gestión de una garantía no tiene ningún costo para el cliente.</li><br>
+                    <li> Los plazos de cumplimiento de una garantía se ajustan a los plazos requeridos por el canal oficial de cada marca.</li><br>
+                    <li>El plazo de vigencia de la garantía de cada artículo se detalla en la factura de compra y comienza al momento de emisión de dicha factura.</li><br>
+                </ol>
+                
+                <h2 class="pb-5">Compras</h2>
+                <ol>
+                    <li>Tenemos muchas opciones de PC armadas para que eligas, si te gusta alguna, nos pedis y te la armamos a tu gusto.</li><br>
+                    <li>Te armamos la pc que quieras! Por lo tanto si sos de Montevideo, podes abonar la totalidad de la PC que elegiste, o un 10% como seña, por giro Abitab
+                        Redpagos, midinero, prex, transferencia bancaria.</li><br>
+                    <li>Si sos del interior del pais, tenes que abonar la totalidad de la PC por los mismos metodos mencionados anteriormente.</li>  <br>  
+                    <li>Todas nuestras PC son armadas a medida y en el dia, por lo tanto solo las armamos con previo pago o seña, ya que las piezas perderian garantia si el comprador decide no adquirirla. </li><br>
+                    <li>Se arman con piezas originales y selladas, y con garantia de las mejores marcas de plaza!</li>    <br>
+                </ol>
+                
+                
+                    
+                <h2 class="pb-5">Envios</h2>
+                
+    <ol>
+        <li>Si pagaste antes de las 11.30, tu pc se arma en el dia, y queda pronta para enviar o retirar a las 17hrs. Si por el contrario, abonas luego de las 11.30, quedara pronta para el dia siguiente en la mañana.</li><br>
+        <li>Todos los envíos tienen un costo de u$s 5, excepto zonas de envio gratis.</li><br>
+        <li>Todos los despachos al interior se realizan a las 17hs una vez recibido el comprobante de pago.</li><br>
+        <li>Cualquier consulta comunicarse al cel. 091 042 023</li><br>
+    </ol>
+    
+    
+               
+                
+                        
+          </div>
+    
+          
+
+        </div>
+                </div>
+                
+                
+                
+              </div>
+        
+              <div></div>
+              <div class="modal-footer">
+                
+                
+                
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
        
         
         <div  class="modal fade " id="ModalCarrito">
@@ -105,7 +185,7 @@
               <div class="modal-footer">
                 <a href="index.html" class="btn btn-secondary" role="button" data-bs-toggle="button">Ir a Productos</a>
                 
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalizar compra</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnfinCompra">Finalizar compra</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               </div>
         
@@ -142,7 +222,33 @@
           </div>
         </div>
         
-
+        <div  class="modal fade " id="modalBoleta">
+          <div class="modal-dialog modal-lg modal-dialog-centered ">
+            <div class="modal-content ">
+        
+              <div class="modal-header ">
+                <h2 class="modal-title">Boleta</h2>
+                       
+              
+              <div class="modal-body">
+                <div><img  src="img/carretilla.png " alt="" width="40" height="40"></div>
+                <hr>
+                <div id="boleta"></div>   
+                
+                
+              </div>
+        
+              <div></div>
+              <div class="modal-footer">
+                          
+                
+                
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
 
 
         <div  class="modal fade" id="ModalUsuario">
@@ -212,7 +318,7 @@
                 <div><span style="font-size:25px;cursor:pointer " onclick="openNav()">&#9776; PRODUCTOS</span></div></div>
                 
                 
-                
+              
                 
                 <script>
                 function openNav() {
@@ -236,7 +342,7 @@
               </div>
               
               <div class="col-lg-2 favorito   ">
-                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalFavorito" ><h4>FAVORITOS  &#9825</h4> </a>
+                <a class="nav-link text-dark d-flex justify-content-center" href="" data-toggle="modal" data-target="#ModalFavorito" id="modalFavo" ><h4>FAVORITOS  &#9825</h4> </a>
 
               </div>
 

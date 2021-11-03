@@ -67,23 +67,50 @@ main #bienvenida a {
   color: #f1f1f1;
 }
 
-#imgCarrito {
-  height: 30%;
-  width: 30%;
+.imgCarrito {
+  height: 40%;
+  width: 40%;
 }
 
 .divCarrito {
   color: #111;
   font-weight: bolder;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
-.divCarrito h6 {
+.divCarrito h6, .divCarrito h5, .divCarrito h3 {
   color: #111;
+  font-weight: bolder;
+}
+
+#contBusqueda {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .btns img {
   width: 40px;
   height: 30px;
+}
+
+#boleta h5, #boleta h4 {
+  color: #111;
+  font-weight: bolder;
+}
+
+#boleta .bol {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
 }
 
 header .container-fluid {
